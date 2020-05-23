@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpleadosViewDlg" widgetVar="EmpleadosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmpleadosTitle}">
+            <h:form id="EmpleadosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empleadosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_idEmpleado}"/>
+                        <h:outputText value="#{empleadosController.selected.idEmpleado}" title="#{bundle.ViewEmpleadosTitle_idEmpleado}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_primerNombre}"/>
+                        <h:outputText value="#{empleadosController.selected.primerNombre}" title="#{bundle.ViewEmpleadosTitle_primerNombre}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_segundoNombre}"/>
+                        <h:outputText value="#{empleadosController.selected.segundoNombre}" title="#{bundle.ViewEmpleadosTitle_segundoNombre}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_primerApellido}"/>
+                        <h:outputText value="#{empleadosController.selected.primerApellido}" title="#{bundle.ViewEmpleadosTitle_primerApellido}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_segundoApellido}"/>
+                        <h:outputText value="#{empleadosController.selected.segundoApellido}" title="#{bundle.ViewEmpleadosTitle_segundoApellido}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_numIdentificacion}"/>
+                        <h:outputText value="#{empleadosController.selected.numIdentificacion}" title="#{bundle.ViewEmpleadosTitle_numIdentificacion}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_correoElectronico}"/>
+                        <h:outputText value="#{empleadosController.selected.correoElectronico}" title="#{bundle.ViewEmpleadosTitle_correoElectronico}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_activo}"/>
+                        <p:selectBooleanCheckbox value="#{empleadosController.selected.activo}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_fechaRegistro}"/>
+                        <h:outputText value="#{empleadosController.selected.fechaRegistro}" title="#{bundle.ViewEmpleadosTitle_fechaRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_idRol}"/>
+                        <h:outputText value="#{empleadosController.selected.idRol}" title="#{bundle.ViewEmpleadosTitle_idRol}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_idTipoIdentificacion}"/>
+                        <h:outputText value="#{empleadosController.selected.idTipoIdentificacion}" title="#{bundle.ViewEmpleadosTitle_idTipoIdentificacion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmpleadosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

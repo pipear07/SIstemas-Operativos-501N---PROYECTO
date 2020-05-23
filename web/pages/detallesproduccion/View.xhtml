@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetallesproduccionViewDlg" widgetVar="DetallesproduccionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDetallesproduccionTitle}">
+            <h:form id="DetallesproduccionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detallesproduccionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_idDetallesproduccion}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.idDetallesproduccion}" title="#{bundle.ViewDetallesproduccionTitle_idDetallesproduccion}"/>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_manodeObra}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.manodeObra}" title="#{bundle.ViewDetallesproduccionTitle_manodeObra}"/>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_fertilizantes}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.fertilizantes}" title="#{bundle.ViewDetallesproduccionTitle_fertilizantes}"/>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_arreglopraderas}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.arreglopraderas}" title="#{bundle.ViewDetallesproduccionTitle_arreglopraderas}"/>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_mantenimientoMaquinas}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.mantenimientoMaquinas}" title="#{bundle.ViewDetallesproduccionTitle_mantenimientoMaquinas}"/>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_reparacionCercas}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.reparacionCercas}" title="#{bundle.ViewDetallesproduccionTitle_reparacionCercas}"/>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_servicios}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.servicios}" title="#{bundle.ViewDetallesproduccionTitle_servicios}"/>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_costoTotal}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.costoTotal}" title="#{bundle.ViewDetallesproduccionTitle_costoTotal}"/>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_fechaRegistro}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.fechaRegistro}" title="#{bundle.ViewDetallesproduccionTitle_fechaRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_litrosLeche}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.litrosLeche}" title="#{bundle.ViewDetallesproduccionTitle_litrosLeche}"/>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_idEmpleado}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.idEmpleado}" title="#{bundle.ViewDetallesproduccionTitle_idEmpleado}"/>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_idInsumo}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.idInsumo}" title="#{bundle.ViewDetallesproduccionTitle_idInsumo}"/>
+                        <h:outputText value="#{bundle.ViewDetallesproduccionLabel_idVaca}"/>
+                        <h:outputText value="#{detallesproduccionController.selected.idVaca}" title="#{bundle.ViewDetallesproduccionTitle_idVaca}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DetallesproduccionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

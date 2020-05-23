@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RazasvacasEditDlg" widgetVar="RazasvacasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRazasvacasTitle}">
+            <h:form id="RazasvacasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{razasvacasController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRazasvacasLabel_idRaza}" for="idRaza" />
+                        <p:inputText id="idRaza" value="#{razasvacasController.selected.idRaza}" title="#{bundle.EditRazasvacasTitle_idRaza}" required="true" requiredMessage="#{bundle.EditRazasvacasRequiredMessage_idRaza}"/>
+                        <p:outputLabel value="#{bundle.EditRazasvacasLabel_nombreRaza}" for="nombreRaza" />
+                        <p:inputText id="nombreRaza" value="#{razasvacasController.selected.nombreRaza}" title="#{bundle.EditRazasvacasTitle_nombreRaza}" required="true" requiredMessage="#{bundle.EditRazasvacasRequiredMessage_nombreRaza}"/>
+                        <p:outputLabel value="#{bundle.EditRazasvacasLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{razasvacasController.selected.descripcion}" title="#{bundle.EditRazasvacasTitle_descripcion}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{razasvacasController.update}" value="#{bundle.Save}" update="display,:RazasvacasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RazasvacasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RazasvacasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

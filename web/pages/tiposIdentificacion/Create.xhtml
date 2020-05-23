@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TiposIdentificacionCreateDlg" widgetVar="TiposIdentificacionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTiposIdentificacionTitle}">
+            <h:form id="TiposIdentificacionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tiposIdentificacionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTiposIdentificacionLabel_idTipoIdentificacion}" for="idTipoIdentificacion" />
+                        <p:inputText id="idTipoIdentificacion" value="#{tiposIdentificacionController.selected.idTipoIdentificacion}" title="#{bundle.CreateTiposIdentificacionTitle_idTipoIdentificacion}" required="true" requiredMessage="#{bundle.CreateTiposIdentificacionRequiredMessage_idTipoIdentificacion}"/>
+                        <p:outputLabel value="#{bundle.CreateTiposIdentificacionLabel_nombreTipoIdentificacion}" for="nombreTipoIdentificacion" />
+                        <p:inputText id="nombreTipoIdentificacion" value="#{tiposIdentificacionController.selected.nombreTipoIdentificacion}" title="#{bundle.CreateTiposIdentificacionTitle_nombreTipoIdentificacion}" required="true" requiredMessage="#{bundle.CreateTiposIdentificacionRequiredMessage_nombreTipoIdentificacion}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tiposIdentificacionController.create}" value="#{bundle.Save}" update="display,:TiposIdentificacionListForm:datalist,:growl" oncomplete="handleSubmit(args,'TiposIdentificacionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TiposIdentificacionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

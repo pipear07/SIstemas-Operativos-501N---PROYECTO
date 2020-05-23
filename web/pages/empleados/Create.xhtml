@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpleadosCreateDlg" widgetVar="EmpleadosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEmpleadosTitle}">
+            <h:form id="EmpleadosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empleadosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_idEmpleado}" for="idEmpleado" />
+                        <p:inputText id="idEmpleado" value="#{empleadosController.selected.idEmpleado}" title="#{bundle.CreateEmpleadosTitle_idEmpleado}" required="true" requiredMessage="#{bundle.CreateEmpleadosRequiredMessage_idEmpleado}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_primerNombre}" for="primerNombre" />
+                        <p:inputText id="primerNombre" value="#{empleadosController.selected.primerNombre}" title="#{bundle.CreateEmpleadosTitle_primerNombre}" required="true" requiredMessage="#{bundle.CreateEmpleadosRequiredMessage_primerNombre}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_segundoNombre}" for="segundoNombre" />
+                        <p:inputText id="segundoNombre" value="#{empleadosController.selected.segundoNombre}" title="#{bundle.CreateEmpleadosTitle_segundoNombre}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_primerApellido}" for="primerApellido" />
+                        <p:inputText id="primerApellido" value="#{empleadosController.selected.primerApellido}" title="#{bundle.CreateEmpleadosTitle_primerApellido}" required="true" requiredMessage="#{bundle.CreateEmpleadosRequiredMessage_primerApellido}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_segundoApellido}" for="segundoApellido" />
+                        <p:inputText id="segundoApellido" value="#{empleadosController.selected.segundoApellido}" title="#{bundle.CreateEmpleadosTitle_segundoApellido}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_numIdentificacion}" for="numIdentificacion" />
+                        <p:inputText id="numIdentificacion" value="#{empleadosController.selected.numIdentificacion}" title="#{bundle.CreateEmpleadosTitle_numIdentificacion}" required="true" requiredMessage="#{bundle.CreateEmpleadosRequiredMessage_numIdentificacion}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_correoElectronico}" for="correoElectronico" />
+                        <p:inputText id="correoElectronico" value="#{empleadosController.selected.correoElectronico}" title="#{bundle.CreateEmpleadosTitle_correoElectronico}" />
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_activo}" for="activo" />
+                        <p:selectBooleanCheckbox id="activo" value="#{empleadosController.selected.activo}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_activo}"/>
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy" value="#{empleadosController.selected.fechaRegistro}" title="#{bundle.EditEmpleadosTitle_fechaRegistro}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_fechaRegistro}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_idRol}" for="idRol" />
+                        <p:selectOneMenu id="idRol" value="#{empleadosController.selected.idRol}" >
+                            <f:selectItems value="#{rolesController.itemsAvailableSelectOne}"
+                                           var="idRolItem"
+                                           itemValue="#{idRolItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEmpleadosLabel_idTipoIdentificacion}" for="idTipoIdentificacion" />
+                        <p:selectOneMenu id="idTipoIdentificacion" value="#{empleadosController.selected.idTipoIdentificacion}" >
+                            <f:selectItems value="#{tiposIdentificacionController.itemsAvailableSelectOne}"
+                                           var="idTipoIdentificacionItem"
+                                           itemValue="#{idTipoIdentificacionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{empleadosController.create}" value="#{bundle.Save}" update="display,:EmpleadosListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmpleadosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmpleadosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

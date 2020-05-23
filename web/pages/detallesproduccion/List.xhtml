@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDetallesproduccionTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="DetallesproduccionListForm">
+                <p:panel header="#{bundle.ListDetallesproduccionTitle}">
+                    <p:dataTable id="datalist" value="#{detallesproduccionController.items}" var="item"
+                                 selectionMode="single" selection="#{detallesproduccionController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idDetallesproduccion}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_idDetallesproduccion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDetallesproduccion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_manodeObra}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.manodeObra}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_fertilizantes}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fertilizantes}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_arreglopraderas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.arreglopraderas}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_mantenimientoMaquinas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mantenimientoMaquinas}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_reparacionCercas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reparacionCercas}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_servicios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.servicios}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_costoTotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.costoTotal}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_fechaRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaRegistro}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_litrosLeche}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.litrosLeche}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_idEmpleado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEmpleado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_idInsumo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idInsumo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesproduccionTitle_idVaca}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idVaca}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{detallesproduccionController.prepareCreate}" update=":DetallesproduccionCreateForm" oncomplete="PF('DetallesproduccionCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DetallesproduccionViewForm" oncomplete="PF('DetallesproduccionViewDialog').show()" disabled="#{empty detallesproduccionController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DetallesproduccionEditForm" oncomplete="PF('DetallesproduccionEditDialog').show()" disabled="#{empty detallesproduccionController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{detallesproduccionController.destroy}" update=":growl,datalist" disabled="#{empty detallesproduccionController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

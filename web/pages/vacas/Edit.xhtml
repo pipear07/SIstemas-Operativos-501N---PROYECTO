@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VacasEditDlg" widgetVar="VacasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditVacasTitle}">
+            <h:form id="VacasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vacasController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditVacasLabel_idVaca}" for="idVaca" />
+                        <p:inputText id="idVaca" value="#{vacasController.selected.idVaca}" title="#{bundle.EditVacasTitle_idVaca}" required="true" requiredMessage="#{bundle.EditVacasRequiredMessage_idVaca}"/>
+                        <p:outputLabel value="#{bundle.EditVacasLabel_codigoVaca}" for="codigoVaca" />
+                        <p:inputText id="codigoVaca" value="#{vacasController.selected.codigoVaca}" title="#{bundle.EditVacasTitle_codigoVaca}" required="true" requiredMessage="#{bundle.EditVacasRequiredMessage_codigoVaca}"/>
+                        <p:outputLabel value="#{bundle.EditVacasLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy" value="#{vacasController.selected.fechaRegistro}" title="#{bundle.EditVacasTitle_fechaRegistro}" required="true" requiredMessage="#{bundle.EditVacasRequiredMessage_fechaRegistro}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditVacasLabel_fechaNacimiento}" for="fechaNacimiento" />
+                        <p:calendar id="fechaNacimiento" pattern="MM/dd/yyyy" value="#{vacasController.selected.fechaNacimiento}" title="#{bundle.EditVacasTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditVacasRequiredMessage_fechaNacimiento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditVacasLabel_idRaza}" for="idRaza" />
+                        <p:selectOneMenu id="idRaza" value="#{vacasController.selected.idRaza}" required="true" requiredMessage="#{bundle.EditVacasRequiredMessage_idRaza}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{razasvacasController.itemsAvailableSelectOne}"
+                                           var="idRazaItem"
+                                           itemValue="#{idRazaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{vacasController.update}" value="#{bundle.Save}" update="display,:VacasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'VacasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="VacasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

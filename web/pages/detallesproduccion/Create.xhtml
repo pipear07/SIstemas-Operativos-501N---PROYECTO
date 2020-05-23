@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetallesproduccionCreateDlg" widgetVar="DetallesproduccionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDetallesproduccionTitle}">
+            <h:form id="DetallesproduccionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detallesproduccionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_idDetallesproduccion}" for="idDetallesproduccion" />
+                        <p:inputText id="idDetallesproduccion" value="#{detallesproduccionController.selected.idDetallesproduccion}" title="#{bundle.CreateDetallesproduccionTitle_idDetallesproduccion}" required="true" requiredMessage="#{bundle.CreateDetallesproduccionRequiredMessage_idDetallesproduccion}"/>
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_manodeObra}" for="manodeObra" />
+                        <p:inputText id="manodeObra" value="#{detallesproduccionController.selected.manodeObra}" title="#{bundle.CreateDetallesproduccionTitle_manodeObra}" />
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_fertilizantes}" for="fertilizantes" />
+                        <p:inputText id="fertilizantes" value="#{detallesproduccionController.selected.fertilizantes}" title="#{bundle.CreateDetallesproduccionTitle_fertilizantes}" />
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_arreglopraderas}" for="arreglopraderas" />
+                        <p:inputText id="arreglopraderas" value="#{detallesproduccionController.selected.arreglopraderas}" title="#{bundle.CreateDetallesproduccionTitle_arreglopraderas}" />
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_mantenimientoMaquinas}" for="mantenimientoMaquinas" />
+                        <p:inputText id="mantenimientoMaquinas" value="#{detallesproduccionController.selected.mantenimientoMaquinas}" title="#{bundle.CreateDetallesproduccionTitle_mantenimientoMaquinas}" />
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_reparacionCercas}" for="reparacionCercas" />
+                        <p:inputText id="reparacionCercas" value="#{detallesproduccionController.selected.reparacionCercas}" title="#{bundle.CreateDetallesproduccionTitle_reparacionCercas}" />
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_servicios}" for="servicios" />
+                        <p:inputText id="servicios" value="#{detallesproduccionController.selected.servicios}" title="#{bundle.CreateDetallesproduccionTitle_servicios}" />
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_costoTotal}" for="costoTotal" />
+                        <p:inputText id="costoTotal" value="#{detallesproduccionController.selected.costoTotal}" title="#{bundle.CreateDetallesproduccionTitle_costoTotal}" />
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_fechaRegistro}" for="fechaRegistro" />
+                        <p:calendar id="fechaRegistro" pattern="MM/dd/yyyy" value="#{detallesproduccionController.selected.fechaRegistro}" title="#{bundle.EditDetallesproduccionTitle_fechaRegistro}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_litrosLeche}" for="litrosLeche" />
+                        <p:inputText id="litrosLeche" value="#{detallesproduccionController.selected.litrosLeche}" title="#{bundle.CreateDetallesproduccionTitle_litrosLeche}" required="true" requiredMessage="#{bundle.CreateDetallesproduccionRequiredMessage_litrosLeche}"/>
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_idEmpleado}" for="idEmpleado" />
+                        <p:selectOneMenu id="idEmpleado" value="#{detallesproduccionController.selected.idEmpleado}" >
+                            <f:selectItems value="#{empleadosController.itemsAvailableSelectOne}"
+                                           var="idEmpleadoItem"
+                                           itemValue="#{idEmpleadoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_idInsumo}" for="idInsumo" />
+                        <p:selectOneMenu id="idInsumo" value="#{detallesproduccionController.selected.idInsumo}" >
+                            <f:selectItems value="#{insumolecheController.itemsAvailableSelectOne}"
+                                           var="idInsumoItem"
+                                           itemValue="#{idInsumoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDetallesproduccionLabel_idVaca}" for="idVaca" />
+                        <p:selectOneMenu id="idVaca" value="#{detallesproduccionController.selected.idVaca}" >
+                            <f:selectItems value="#{vacasController.itemsAvailableSelectOne}"
+                                           var="idVacaItem"
+                                           itemValue="#{idVacaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detallesproduccionController.create}" value="#{bundle.Save}" update="display,:DetallesproduccionListForm:datalist,:growl" oncomplete="handleSubmit(args,'DetallesproduccionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DetallesproduccionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

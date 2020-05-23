@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InsumolecheEditDlg" widgetVar="InsumolecheEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditInsumolecheTitle}">
+            <h:form id="InsumolecheEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{insumolecheController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditInsumolecheLabel_idInsumo}" for="idInsumo" />
+                        <p:inputText id="idInsumo" value="#{insumolecheController.selected.idInsumo}" title="#{bundle.EditInsumolecheTitle_idInsumo}" required="true" requiredMessage="#{bundle.EditInsumolecheRequiredMessage_idInsumo}"/>
+                        <p:outputLabel value="#{bundle.EditInsumolecheLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{insumolecheController.selected.descripcion}" title="#{bundle.EditInsumolecheTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.EditInsumolecheLabel_nombreInsumo}" for="nombreInsumo" />
+                        <p:inputText id="nombreInsumo" value="#{insumolecheController.selected.nombreInsumo}" title="#{bundle.EditInsumolecheTitle_nombreInsumo}" required="true" requiredMessage="#{bundle.EditInsumolecheRequiredMessage_nombreInsumo}"/>
+                        <p:outputLabel value="#{bundle.EditInsumolecheLabel_fechaSuministro}" for="fechaSuministro" />
+                        <p:calendar id="fechaSuministro" pattern="MM/dd/yyyy" value="#{insumolecheController.selected.fechaSuministro}" title="#{bundle.EditInsumolecheTitle_fechaSuministro}" required="true" requiredMessage="#{bundle.EditInsumolecheRequiredMessage_fechaSuministro}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditInsumolecheLabel_cantidadtotal}" for="cantidadtotal" />
+                        <p:inputText id="cantidadtotal" value="#{insumolecheController.selected.cantidadtotal}" title="#{bundle.EditInsumolecheTitle_cantidadtotal}" />
+                        <p:outputLabel value="#{bundle.EditInsumolecheLabel_cantidaddisponible}" for="cantidaddisponible" />
+                        <p:inputText id="cantidaddisponible" value="#{insumolecheController.selected.cantidaddisponible}" title="#{bundle.EditInsumolecheTitle_cantidaddisponible}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{insumolecheController.update}" value="#{bundle.Save}" update="display,:InsumolecheListForm:datalist,:growl" oncomplete="handleSubmit(args, 'InsumolecheEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InsumolecheEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
