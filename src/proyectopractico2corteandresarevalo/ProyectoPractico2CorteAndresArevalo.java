@@ -19,5 +19,5 @@ public class ProyectoPractico2CorteAndresArevalo {
         Conectar.conectar();
         VerificaConexion.main(args);
     }
-    
+    //nononononononono
 }
