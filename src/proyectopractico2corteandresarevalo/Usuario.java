@@ -14,6 +14,7 @@ public class Usuario {
     private String nombre;
     private String documento;
     private int idusuario;
+    private int id_cargo;
 
     public int getIdusuario() {
         return idusuario;
