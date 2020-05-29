@@ -15,13 +15,7 @@ import java.sql.*;
 public class Conectar {
     protected static Connection conexion = null;
 
-    public static Connection getConexion() {
-        return conexion;
-    }
-
-    public static void setConexion(Connection conexion) {
-        Conectar.conexion = conexion;
-    }
+    
 
     public static void conectar() {
         try {
